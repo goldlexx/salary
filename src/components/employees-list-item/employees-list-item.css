@@ -11,7 +11,9 @@
     line-height: 35px;
     font-size: 20px;
     cursor: pointer;
-    min-width: 550px;
+    min-width: 0;
+    flex: 1 1 160px;
+    overflow-wrap: anywhere;
 }
 
 .list-group-item input {
@@ -58,8 +60,52 @@
 .list-group-item.increase .list-group-item-label, .list-group-item.increase .list-group-item-input {
     color: #e09f3e;
 }
-  
+
 .list-group-item.increase .btn-star {
     color: #aeaeae;
 }
-  
+
+@media (max-width: 600px) {
+    .list-group-item {
+        flex-wrap: wrap;
+        gap: 8px;
+        padding: 12px;
+    }
+
+    .list-group-item span {
+        font-size: 16px;
+        line-height: 22px;
+    }
+
+    .list-group-item input {
+        width: 90px;
+        min-width: 0;
+        font-size: 16px;
+    }
+
+    .list-group-item button {
+        width: 40px;
+        height: 40px;
+        margin: 0;
+    }
+
+    .list-group-item .fa-star {
+        width: 28px;
+        height: 40px;
+        line-height: 40px;
+        transform: none;
+    }
+}
+
+@media (max-width: 360px) {
+    .btn-group {
+        display: flex;
+        flex-wrap: wrap;
+        width: 100%;
+    }
+
+    .btn-group > .btn {
+        flex: 1 1 80px;
+        white-space: normal;
+    }
+}
