@@ -19,8 +19,10 @@ class EmployeesAddForm extends Component {
 
   onSubmit = (e) => {
     e.preventDefault();
-    if (this.state.name.length < 3 || !this.state.salary) return;
-    this.props.onAdd(this.state.name, this.state.salary);
+    const name = this.state.name.trim();
+    const salary = Number(this.state.salary);
+    if (name.length < 3 || !this.state.salary || !Number.isFinite(salary) || salary < 0) return;
+    this.props.onAdd(name, this.state.salary);
     this.setState({
         name: '',
         salary: ''
@@ -38,18 +40,24 @@ class EmployeesAddForm extends Component {
             type='text'
             className='form-control new-post-label'
             placeholder='Как его зовут?'
+            aria-label='Employee name'
             name='name'
             value={name}
             onChange={this.onValueChange}
             minLength="3"
+            required
           />
           <input
             type='number'
             className='form-control new-post-label'
             placeholder='З/П в $?'
+            aria-label='Employee salary'
             name='salary'
             value={salary}
             onChange={this.onValueChange}
+            min="0"
+            step="1"
+            required
           />
 
           <button type='submit' className='btn btn-outline-light'>
