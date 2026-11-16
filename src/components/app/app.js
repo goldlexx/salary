@@ -17,8 +17,8 @@ class App extends Component {
         { name: 'Alex M.', salary: 3000, increase: true, rise: false, id: 2 },
         { name: 'Carl W.', salary: 5000, increase: false, rise: false, id: 3 },
       ],
-      term: '', filter: 'all'
-
+      term: '',
+      filter: 'all',
     };
     this.maxId = 4;
   }
@@ -31,7 +31,6 @@ class App extends Component {
     });
   };
 
-  // Да, пока могут добавляться пустые пользователи. Мы это еще исправим
   addItem = (name, salary) => {
     const newItem = {
       name,
@@ -49,14 +48,11 @@ class App extends Component {
   };
 
   onToggleProp = (id, prop) => {
-    this.setState(({data}) => ({
-      data: data.map(item => {
-        if (item.id === id) {
-          return {...item, [prop]: !item[prop]}
-        }
-        return item;
-      })
-    }))
+    this.setState(({ data }) => ({
+      data: data.map((item) =>
+        item.id === id ? { ...item, [prop]: !item[prop] } : item
+      ),
+    }));
   };
 
   searchEmp = (items, term) => {
@@ -64,21 +60,20 @@ class App extends Component {
       return items;
     }
 
-    return items.filter(item => {
-      return item.name.indexOf(term) > -1
-    })
-  }
+    const normalizedTerm = term.trim().toLocaleLowerCase();
+    return items.filter((item) =>
+      item.name.toLocaleLowerCase().includes(normalizedTerm)
+    );
+  };
 
-  onUpadateSearch = (term) => {
-    this.setState({term});
-  }
+  onUpdateSearch = (term) => this.setState({ term });
 
   filterPost = (items, filter) => {
     switch (filter) {
       case 'rise': 
         return items.filter(item => item.rise === true);
-      case 'moreThen1000': 
-        return items.filter(item => item.salary > 1000);
+      case 'moreThan1000':
+        return items.filter((item) => item.salary > 1000);
       default:
         return items;  
     }
@@ -99,11 +94,11 @@ class App extends Component {
     
     return (
       <div className='app'>
-        <AppInfo employees={employees} increased={increased}/>
+        <AppInfo employees={employees} increased={increased} />
 
         <div className='search-panel'>
-          <SearchPanel/>
-          <AppFilter filter={filter} onFilterSelect={this.onFilterSelect}/>
+          <SearchPanel onUpdateSearch={this.onUpdateSearch} />
+          <AppFilter filter={filter} onFilterSelect={this.onFilterSelect} />
         </div>
 
         <EmployeesList

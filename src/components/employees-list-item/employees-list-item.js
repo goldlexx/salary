@@ -15,25 +15,23 @@ const EmployeesListItem = (props) => {
 
   return (
     <li className={classNames}>
-      <span className='list-group-item-label ' onClick={onToggleProp} data-toggle="rise">
+      <button className='list-group-item-label' type='button' onClick={onToggleProp} data-toggle='rise' aria-pressed={rise}>
         {name}
-      </span>
-      <input
-        type='text'
-        className='list-group-item-input'
-        defaultValue={salary + '$'}
-      />
+      </button>
+      <span className='list-group-item-input'>{salary}$</span>
       <div className='d-flex justify-content-center align-items-center'>
         <button
           type='button'
           className='btn-cookie btn-sm'
+          aria-label={`Toggle raise status for ${name}`}
+          aria-pressed={increase}
           onClick={onToggleProp}
           data-toggle="increase"
         >
           <i className='fas fa-cookie'></i>
         </button>
 
-        <button onClick={onDelete} type='button' className='btn-trash btn-sm '>
+        <button onClick={onDelete} type='button' className='btn-trash btn-sm' aria-label={`Delete ${name}`}>
           <i className='fas fa-trash'></i>
         </button>
         <i className='fas fa-star'></i>

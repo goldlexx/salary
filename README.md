@@ -1,40 +1,21 @@
-# Проект: "Учет сотрудников в компании (React)"
+# Employee dashboard
 
-## Описание:
+A small React interface for searching and filtering an employee list, marking raise and promotion status, and adding or removing entries. Data lives in component state and resets when the page reloads; this project has no backend or persistence layer.
 
-"Учет сотрудников в компании" - это интерактивная страница, на которой содержится информация о сотрудниках.
+## Run locally
 
-| **GithHub Pages** | [Ссылка GitHub Pages](https://goldlexx.github.io/salary/) |
-| ----------------- | -------------------------------------------------------------------- |
-
-## Особенности
-Каждый элемент интерактивен, можно использовать:
-* Фильтры
-* Поиск
-* Отметки по разным критериям
-* Создание сотрудников
-* Удаление
-
-## Цель проекта
-* Цель проекта заключается в том, чтобы показать навыки работы с фреймворком React. В данном проекте используется основные базовые функции создания приложения. * (CRUD) создание, чтение, модификация и удаление.
-
-## Инструкция по установке:
-
-```
+```sh
 git clone https://github.com/goldlexx/salary.git
+cd salary
+npm ci
+npm start
 ```
-Запустите локальный сервер разработки с функцией перезагрузки в реальном времени для статических и динамических страниц - [How do you set up a local testing server? (MDN web docs)](https://developer.mozilla.org/en-US/docs/Learn/Common_questions/set_up_a_local_testing_server)
 
-## Языки:
+## Build and test
 
-* JavaScript с использованием React
+```sh
+npm test -- --watchAll=false
+npm run build
+```
 
-
-
-
-
-
-
-
-
-
+The deployed static demo is available at [GitHub Pages](https://goldlexx.github.io/salary/).
